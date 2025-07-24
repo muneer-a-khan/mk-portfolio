@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Github, Linkedin, ExternalLink, MessageCircle, Send, Heart } from "lucide-react";
+import { Mail, Phone, MapPin, Github, Linkedin, ExternalLink, MessageCircle } from "lucide-react";
 import { cn, staggerContainer, fadeInUp, fadeInLeft, fadeInRight } from "@/lib/utils";
 
 const contactMethods = [
@@ -73,13 +73,13 @@ export default function ContactSection() {
         {/* Section Header */}
         <motion.div variants={fadeInUp} className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
-            Let's{" "}
+            Let&apos;s{" "}
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Connect
             </span>
           </h2>
           <p className="text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            I'm always interested in new opportunities, collaborations, and conversations about technology. 
+            I&apos;m always interested in new opportunities, collaborations, and conversations about technology. 
             Feel free to reach out!
           </p>
         </motion.div>
@@ -175,8 +175,8 @@ export default function ContactSection() {
                 Ready to Build Something Amazing?
               </h3>
               <p className="text-blue-100 mb-8 text-lg leading-relaxed">
-                Whether it's a full-stack application, machine learning project, or research collaboration, 
-                I'm excited to discuss how we can work together to create impactful solutions.
+                Whether it&apos;s a full-stack application, machine learning project, or research collaboration, 
+                I&apos;m excited to discuss how we can work together to create impactful solutions.
               </p>
               
               <div className="space-y-4">

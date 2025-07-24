@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { motion, useMotionValue, PanInfo, AnimatePresence } from "framer-motion";
-import { X, Maximize2, Move, Palette, RotateCcw } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Maximize2, Move, X } from "lucide-react";
 import Image from "next/image";
-import { cn, staggerContainer, fadeInUp } from "@/lib/utils";
+import { useRef, useState } from "react";
+import { staggerContainer, fadeInUp } from "@/lib/utils";
 
 interface CanvasImage {
   src: string;
@@ -34,10 +34,7 @@ function DraggableImage({ image, onBringToFront, zIndex }: DraggableImageProps) 
   const [isExpanded, setIsExpanded] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   
-  const x = useMotionValue(Math.random() * 300);
-  const y = useMotionValue(Math.random() * 700);
-  
-  const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+  const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: { offset: { x: number; y: number } }) => {
     const container = containerRef.current?.parentElement;
     if (!container) return;
     
@@ -50,13 +47,13 @@ function DraggableImage({ image, onBringToFront, zIndex }: DraggableImageProps) 
     const maxX = containerRect.width - imageRect.width;
     const maxY = containerRect.height - imageRect.height;
     
-    const currentX = x.get();
-    const currentY = y.get();
+    const currentX = info.offset.x;
+    const currentY = info.offset.y;
     
-    if (currentX < 0) x.set(0);
-    if (currentX > maxX) x.set(maxX);
-    if (currentY < 0) y.set(0);
-    if (currentY > maxY) y.set(maxY);
+    if (currentX < 0) info.offset.x = 0;
+    if (currentX > maxX) info.offset.x = maxX;
+    if (currentY < 0) info.offset.y = 0;
+    if (currentY > maxY) info.offset.y = maxY;
   };
 
   return (
@@ -65,8 +62,8 @@ function DraggableImage({ image, onBringToFront, zIndex }: DraggableImageProps) 
         ref={containerRef}
         className="absolute cursor-grab active:cursor-grabbing"
         style={{ 
-          x, 
-          y, 
+          x: 0, 
+          y: 0, 
           zIndex: zIndex + 10
         }}
         drag
@@ -156,7 +153,6 @@ function DraggableImage({ image, onBringToFront, zIndex }: DraggableImageProps) 
 
 export default function CanvasSection() {
   // Initialize with all images
-  const [activeImages, setActiveImages] = useState<string[]>(canvasImages.map(img => img.id));
   const [imageZIndexes, setImageZIndexes] = useState<{ [key: string]: number }>(() => {
     const initialZIndexes: { [key: string]: number } = {};
     canvasImages.forEach((img, index) => {
@@ -214,9 +210,7 @@ export default function CanvasSection() {
 
           {/* Draggable Images */}
           <AnimatePresence>
-            {activeImages.map(imageId => {
-              const image = canvasImages.find(img => img.id === imageId);
-              if (!image) return null;
+            {canvasImages.map(image => {
               
               return (
                 <DraggableImage

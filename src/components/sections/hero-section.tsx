@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Mail, MapPin } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import Image from "next/image";
-import { cn, staggerContainer, fadeInUp, fadeInLeft, fadeInRight } from "@/lib/utils";
+import { staggerContainer, fadeInLeft } from "@/lib/utils";
 import { TypingAnimation, RotatingText } from "@/components/ui/typing-animation";
 import Threads from "@/components/ui/threads";
 import { useState } from "react";
@@ -43,7 +43,7 @@ export default function HeroSection() {
             <motion.div variants={fadeInLeft} className="space-y-6">
               <motion.h1 className="text-4xl md:text-6xl font-bold leading-tight">
                 <TypingAnimation
-                  text="Hello 👋, I'm "
+                  text="Hello &apos;I&apos;m "
                   speed={80}
                   className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 dark:from-white dark:via-blue-300 dark:to-white bg-clip-text text-transparent"
                   onComplete={() => setShowDescription(true)}
@@ -71,7 +71,7 @@ export default function HeroSection() {
                   transition={{ delay: 0.5 }}
                   className="text-2xl md:text-3xl font-semibold"
                 >
-                  <span className="text-slate-700 dark:text-slate-300">I'm a </span>
+                  <span className="text-slate-700 dark:text-slate-300">I&apos;m a </span>
                   <RotatingText
                     texts={rotatingTexts}
                     className="bg-gradient-to-r from-emerald-600 via-blue-600 to-purple-600 bg-clip-text text-transparent"
@@ -100,7 +100,7 @@ export default function HeroSection() {
               className="space-y-6"
             >
               <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-lg mt-22">
-                I'm passionate about creating impactful solutions through 
+                I&apos;m passionate about creating impactful solutions through 
                 <span className="text-blue-600 font-semibold"> machine learning</span>, 
                 <span className="text-purple-600 font-semibold"> full-stack development</span>, and 
                 <span className="text-emerald-600 font-semibold"> innovative research</span>. 

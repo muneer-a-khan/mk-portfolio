@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Building2, Calendar, MapPin, ExternalLink, CheckCircle } from "lucide-react";
-import { cn, staggerContainer, fadeInUp, fadeInLeft } from "@/lib/utils";
+import { cn, staggerContainer, fadeInUp } from "@/lib/utils";
 
 const experiences = [
   {
@@ -98,7 +98,7 @@ export default function ExperienceSection() {
             </span>
           </h2>
           <p className="text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            From research to full-stack development, here's my journey in building impactful solutions
+            From research to full-stack development, here&apos;s my journey in building impactful solutions
           </p>
         </motion.div>
 
@@ -214,7 +214,7 @@ export default function ExperienceSection() {
             whileTap={{ scale: 0.95 }}
             className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-medium"
           >
-            <span>Let's Work Together</span>
+            <span>Let&apos;s Work Together</span>
             <ExternalLink className="w-4 h-4" />
           </motion.a>
         </motion.div>

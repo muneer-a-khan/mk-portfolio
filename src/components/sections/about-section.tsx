@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Code, Database, Globe, Wrench, Brain, GraduationCap, Trophy, BookOpen } from "lucide-react";
-import { cn, staggerContainer, fadeInUp, fadeInLeft, fadeInRight } from "@/lib/utils";
+import { Code, GraduationCap, Trophy, BookOpen } from "lucide-react";
+import { cn, staggerContainer, fadeInUp } from "@/lib/utils";
 
 const attributeCategories = [
   {
@@ -80,27 +80,6 @@ const calculateOverallRating = () => {
   const average = allSkills.reduce((sum, skill) => sum + skill.level, 0) / allSkills.length;
   return Math.round(average);
 };
-
-const SkillBar = ({ skill, color }: { skill: { name: string; level: number }, color: string }) => (
-  <div className="flex items-center justify-between py-2">
-    <span className="text-sm font-medium text-slate-700 dark:text-slate-300 min-w-[100px] text-left">
-      {skill.name}
-    </span>
-    <div className="flex items-center gap-3 flex-1 justify-end">
-      <div className="w-16 h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
-        <motion.div
-          className={`h-full bg-gradient-to-r ${color} rounded-full`}
-          initial={{ width: 0 }}
-          whileInView={{ width: `${skill.level}%` }}
-          transition={{ duration: 1, delay: 0.2 }}
-        />
-      </div>
-      <span className="text-sm font-bold text-slate-900 dark:text-white min-w-[20px] text-center">
-        {skill.level}
-      </span>
-    </div>
-  </div>
-);
 
 export default function AboutSection() {
   const overallRating = calculateOverallRating();

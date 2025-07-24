@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ExternalLink, Github, Calendar, Users, Zap, Brain, Database, Bot, ChevronRight, Star } from "lucide-react";
+import { ExternalLink, Github, Calendar, Zap, Database, Bot } from "lucide-react";
 import { cn, staggerContainer, fadeInUp, scaleIn } from "@/lib/utils";
 
 const projects = [
@@ -108,7 +108,7 @@ export default function ProjectsSection() {
 
         {/* Featured Projects */}
         <div className="grid lg:grid-cols-3 gap-6 mb-16">
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <motion.div
               key={project.id}
               variants={scaleIn}
