@@ -16,8 +16,8 @@ const contactMethods = [
   {
     icon: Phone,
     title: "Phone",
-    value: "571-639-8965",
-    href: "tel:571-639-8965",
+    value: "(571) 510-0569",
+    href: "tel:571-510-0569",
     gradient: "from-emerald-500 to-teal-500",
     description: "Available for urgent matters"
   },
@@ -276,7 +276,7 @@ export default function ContactSection() {
         {/* Footer */}
         <motion.div variants={fadeInUp} className="text-center mt-16 pt-8 border-t border-slate-200 dark:border-slate-700">
           <p className="text-slate-600 dark:text-slate-400 flex items-center justify-center gap-2">
-            Built with <Heart className="w-4 h-4 text-red-500 fill-current" /> by Muneer Khan using Next.js & Framer Motion
+            Built by Muneer Khan
           </p>
           <p className="text-sm text-slate-500 dark:text-slate-500 mt-2">
             © 2025 Muneer Khan. All rights reserved.

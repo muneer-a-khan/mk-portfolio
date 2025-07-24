@@ -7,80 +7,69 @@ import { cn, staggerContainer, fadeInUp, fadeInLeft, fadeInRight } from "@/lib/u
 const attributeCategories = [
   {
     id: 1,
-    title: "CODING",
+    title: "LANGUAGES",
     color: "from-blue-400 to-blue-600",
-    bgColor: "bg-blue-500/10",
-    borderColor: "border-blue-500/20",
-    textColor: "text-blue-600",
+    bgColor: "bg-slate-800",
+    borderColor: "border-blue-500/30",
+    textColor: "text-blue-400",
     skills: [
-      { name: "Java", level: 90 },
-      { name: "Python", level: 95 },
-      { name: "TypeScript", level: 90 },
-      { name: "JavaScript", level: 88 },
-      { name: "HTML/CSS", level: 92 },
-      { name: "SQL", level: 85 }
+      { name: "Java", level: 94 },
+      { name: "Python", level: 97 },
+      { name: "TypeScript", level: 92 },
+      { name: "JavaScript", level: 91 },
+      { name: "HTML/CSS", level: 87 },
+      { name: "SQL", level: 84 }
     ]
   },
   {
     id: 2,
     title: "FRAMEWORKS",
     color: "from-green-400 to-green-600",
-    bgColor: "bg-green-500/10",
-    borderColor: "border-green-500/20",
-    textColor: "text-green-600",
+    bgColor: "bg-slate-800",
+    borderColor: "border-green-500/30",
+    textColor: "text-green-400",
     skills: [
-      { name: "React", level: 92 },
-      { name: "NextJS", level: 90 },
-      { name: "Angular", level: 85 },
-      { name: "NodeJS", level: 88 },
-      { name: "TailwindCSS", level: 95 },
-      { name: "Spring Boot", level: 80 }
+      { name: "React", level: 82 },
+      { name: "NextJS", level: 80 },
+      { name: "Angular", level: 75 },
+      { name: "NodeJS", level: 78 },
+      { name: "Spring Boot", level: 73 },
+      { name: "Express", level: 76 },
+      { name: "TailwindCSS", level: 84 },
+      { name: "AuthJS", level: 71 },
+      { name: "Prisma ORM", level: 77 }
     ]
   },
   {
     id: 3,
     title: "TOOLS",
     color: "from-orange-400 to-orange-600",
-    bgColor: "bg-orange-500/10",
-    borderColor: "border-orange-500/20",
-    textColor: "text-orange-600",
+    bgColor: "bg-slate-800",
+    borderColor: "border-orange-500/30",
+    textColor: "text-orange-400",
     skills: [
-      { name: "Git", level: 90 },
-      { name: "Docker", level: 85 },
-      { name: "Firebase", level: 88 },
-      { name: "Supabase", level: 90 },
-      { name: "Jenkins", level: 75 },
-      { name: "JUnit", level: 80 }
+      { name: "Git", level: 95 },
+      { name: "Docker", level: 70 },
+      { name: "JUnit", level: 78 },
+      { name: "Jenkins", level: 76 },
+      { name: "Firebase", level: 81 },
+      { name: "Supabase", level: 94 },
+      { name: "Google Analytics", level: 93 }
     ]
   },
   {
     id: 4,
-    title: "AI / ML",
+    title: "ML/DATA",
     color: "from-red-400 to-red-600",
-    bgColor: "bg-red-500/10",
-    borderColor: "border-red-500/20",
-    textColor: "text-red-600",
+    bgColor: "bg-slate-800",
+    borderColor: "border-red-500/30",
+    textColor: "text-red-400",
     skills: [
-      { name: "YOLOv8", level: 88 },
-      { name: "PyTorch", level: 85 },
-      { name: "OpenCV", level: 90 },
-      { name: "NetworkX", level: 80 },
-      { name: "CUDA", level: 75 }
-    ]
-  },
-  {
-    id: 5,
-    title: "ACADEMICS",
-    color: "from-yellow-400 to-yellow-600",
-    bgColor: "bg-yellow-500/10",
-    borderColor: "border-yellow-500/20",
-    textColor: "text-yellow-600",
-    skills: [
-      { name: "Data Structures", level: 92 },
-      { name: "Algorithms", level: 90 },
-      { name: "Database Systems", level: 88 },
-      { name: "Software Testing", level: 85 },
-      { name: "Cybersecurity", level: 82 }
+      { name: "YOLOv8", level: 81 },
+      { name: "PyTorch", level: 74 },
+      { name: "OpenCV", level: 72 },
+      { name: "NetworkX", level: 69 },
+      { name: "Open OnDemand", level: 67 }
     ]
   }
 ];
@@ -134,7 +123,7 @@ export default function AboutSection() {
           {/* Player Info Header */}
           <div className="flex items-center justify-center gap-8 mb-8">
             <div className="text-left">
-              <h2 className="text-2xl font-bold text-white mb-1">MK</h2>
+              <h2 className="text-2xl font-bold text-white mb-1">Muneer Khan</h2>
               <div className="flex items-center gap-2 text-slate-300">
                 <Code className="w-4 h-4" />
                 <span className="text-sm">Computer Science Student</span>
@@ -146,24 +135,51 @@ export default function AboutSection() {
             
             {/* Overall Rating Circle */}
             <div className="relative">
-              <div className="w-24 h-24 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 flex items-center justify-center">
-                <div className="w-20 h-20 rounded-full bg-slate-900 flex flex-col items-center justify-center">
-                  <span className="text-3xl font-bold text-white">{overallRating}</span>
-                  <span className="text-xs text-slate-300 font-medium">OVR</span>
+              <div className="w-24 h-24 relative">
+                {/* Background Circle */}
+                <svg className="w-24 h-24 transform -rotate-90" viewBox="0 0 96 96">
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="44"
+                    fill="none"
+                    stroke="rgb(51, 65, 85)"
+                    strokeWidth="8"
+                  />
+                  {/* Progress Circle (88% filled) */}
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="44"
+                    fill="none"
+                    stroke="url(#gradient)"
+                    strokeWidth="8"
+                    strokeLinecap="round"
+                    strokeDasharray={`${2 * Math.PI * 44}`}
+                    strokeDashoffset={`${2 * Math.PI * 44 * (1 - 0.88)}`}
+                  />
+                  <defs>
+                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="rgb(59, 130, 246)" />
+                      <stop offset="100%" stopColor="rgb(34, 211, 238)" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                
+                {/* Center Content */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center">
+                    <span className="text-3xl font-bold text-white">{overallRating+6}</span>
+                    <div className="text-xs text-slate-300 font-medium">OVR</div>
+                  </div>
                 </div>
               </div>
               <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2">
-                <span className="text-xs text-cyan-400 font-bold">{overallRating} MAX</span>
+                <span className="text-xs text-cyan-400 font-bold">{overallRating+18} MAX</span>
               </div>
             </div>
 
-            <div className="text-right text-slate-300">
-              <div className="text-sm">H: 5'6" W: 150 lbs WS: 5'11"</div>
-              <div className="text-xs text-slate-400 mt-2">
-                Earn MyPOINTS in order to upgrade<br />
-                your overall attribute cap.
-              </div>
-            </div>
+            
           </div>
 
           {/* GPA Display */}
@@ -176,55 +192,79 @@ export default function AboutSection() {
           </div>
         </motion.div>
 
-        {/* Attributes Grid */}
-        <div className="grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-6">
+        {/* NBA 2K Style Attributes */}
+        <div className="grid grid-cols-4 gap-12 max-w-8xl mx-auto px-4">
           {attributeCategories.map((category, index) => (
             <motion.div
               key={category.id}
               variants={fadeInUp}
               custom={index}
-              className={cn(
-                "relative rounded-lg p-4 border-2",
+              className="flex flex-col items-center"
+            >
+              {/* Attribute Bars Container */}
+              <div className={cn(
+                "relative rounded-lg p-4 border-2 min-h-[400px] w-full",
                 category.bgColor,
                 category.borderColor
-              )}
-            >
-              {/* Category Header */}
-              <div className="text-center mb-4">
-                <div className={cn(
-                  "text-lg font-bold transform -rotate-90 origin-center absolute left-2 top-1/2 -translate-y-1/2",
-                  category.textColor
-                )}>
-                  {category.title}
-                </div>
-                
-                {/* Skill Bars */}
-                <div className="ml-8 space-y-1">
+              )}>
+                {/* Vertical Skill Bars Container */}
+                <div className="h-full flex items-end justify-between gap-2 pt-8">
                   {category.skills.map((skill, skillIndex) => (
                     <motion.div
                       key={skillIndex}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 + skillIndex * 0.05 }}
+                      initial={{ height: 0, opacity: 0 }}
+                      whileInView={{ height: "auto", opacity: 1 }}
+                      transition={{ delay: index * 0.1 + skillIndex * 0.05, duration: 0.8 }}
+                      className="flex flex-col items-center flex-1"
                     >
-                      <div className="text-xs text-slate-300 mb-1">{skill.name}</div>
-                      <div className="flex items-center gap-2">
-                        <div className="flex-1 h-4 bg-slate-700 rounded overflow-hidden">
-                          <motion.div
-                            className={`h-full bg-gradient-to-r ${category.color}`}
-                            initial={{ width: 0 }}
-                            whileInView={{ width: `${skill.level}%` }}
-                            transition={{ duration: 0.8, delay: index * 0.1 + skillIndex * 0.05 }}
-                          />
-                        </div>
-                        <span className="text-xs font-bold text-white min-w-[20px]">
-                          {skill.level}
-                        </span>
+                      {/* Vertical Bar with Internal Text */}
+                      <div className="w-full h-64 bg-slate-700 rounded-t-sm relative overflow-hidden mb-2">
+                        <motion.div
+                          className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t ${category.color} rounded-t-sm`}
+                          initial={{ height: 0 }}
+                          whileInView={{ height: `${skill.level}%` }}
+                          transition={{ delay: index * 0.2 + skillIndex * 0.1, duration: 1.2, ease: "easeOut" }}
+                        />
+                        
+                        {/* Vertical Skill Name Inside Bar */}
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          whileInView={{ opacity: 1 }}
+                          transition={{ delay: index * 0.2 + skillIndex * 0.1 + 0.5 }}
+                          className="absolute inset-0 flex items-center justify-center"
+                        >
+                          <div 
+                            className="transform -rotate-90 text-xs font-medium text-white whitespace-nowrap"
+                            style={{
+                              textShadow: "1px 1px 2px rgba(0,0,0,0.8)"
+                            }}
+                          >
+                            {skill.name}
+                          </div>
+                        </motion.div>
+                      </div>
+                      
+                      {/* Skill Level Number */}
+                      <div className="text-sm font-bold text-white">
+                        {skill.level}
                       </div>
                     </motion.div>
                   ))}
                 </div>
               </div>
+              
+              {/* Category Title at Bottom */}
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 + 0.5 }}
+                className={cn(
+                  "mt-4 text-2xl font-bold text-center",
+                  category.textColor
+                )}
+              >
+                {category.title}
+              </motion.div>
             </motion.div>
           ))}
         </div>
@@ -233,15 +273,15 @@ export default function AboutSection() {
         <motion.div variants={fadeInUp} className="mt-12 text-center">
           <div className="inline-flex items-center gap-8 bg-slate-800/50 rounded-lg p-6 border border-slate-700">
             <div className="text-center">
-              <div className="text-2xl font-bold text-blue-400">15+</div>
+              <div className="text-2xl font-bold text-blue-400">5</div>
               <div className="text-xs text-slate-300">Projects</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-green-400">4</div>
+              <div className="text-2xl font-bold text-green-400">2</div>
               <div className="text-xs text-slate-300">Internships</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-orange-400">2</div>
+              <div className="text-2xl font-bold text-orange-400">1</div>
               <div className="text-xs text-slate-300">Research</div>
             </div>
             <div className="text-center">
