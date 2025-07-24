@@ -31,69 +31,20 @@ const projects = [
   },
   {
     id: 2,
-    title: "AdmitifyAI",
-    subtitle: "College Admissions Assistant Platform",
-    period: "Dec 2024 - Present",
-    type: "Startup",
-    featured: true,
-    description: "Co-founded and developed a college admissions assistant platform using a custom-trained LLM that generates college match predictions, application feedback, and score reports.",
-    longDescription: "Built comprehensive platform with onboarding experience, dashboard UI, user authentication flows, and content pages.",
-    achievements: [
-      "Successfully launched with 60+ active users in first week",
-      "Connected backend APIs to display personalized matches",
-      "Led hiring and onboarding of UI/UX and marketing interns",
-      "Actively marketing on several platforms"
-    ],
-    technologies: ["LLMs", "NextJS", "TailwindCSS", "Authentication", "APIs", "Product Development"],
-    metrics: {
-      users: "60+",
-      launch: "1 week",
-      team: "5 members"
-    },
-    gradient: "from-emerald-600 to-teal-600",
-    icon: Brain,
-    link: "https://admitifyai.com"
-  },
-  {
-    id: 3,
-    title: "VADM Volunteer System",
-    subtitle: "Volunteer Management Platform",
-    period: "Jan 2025 - May 2025",
-    type: "Client Project",
-    featured: true,
-    description: "Designed and built a comprehensive volunteer management platform for the Virginia Discovery Museum with team collaboration.",
-    longDescription: "Developed user-facing features including shift calendars, application forms, cancellation workflows, volunteer dashboards, and admin features.",
-    achievements: [
-      "Successfully launched on April 26, 2025",
-      "Showcased at UVA Engineering Expo",
-      "Streamlined volunteer management for museum operations",
-      "Collaborated with client meetings and technical documentation"
-    ],
-    technologies: ["NextJS", "TailwindCSS", "Team Development", "Client Management"],
-    metrics: {
-      launch: "Apr 2025",
-      expo: "UVA Showcase",
-      team: "Collaborative"
-    },
-    gradient: "from-orange-600 to-red-600",
-    icon: Users
-  },
-  {
-    id: 4,
     title: "NBA Stats Predictor",
     subtitle: "Sports Analytics & Prediction System",
     period: "Current Project",
     type: "Personal",
-    featured: false,
+    featured: true,
     description: "Currently developing a comprehensive NBA statistics predictor using machine learning algorithms to forecast player performance and game outcomes.",
-    longDescription: "Building data pipeline for NBA statistics with predictive modeling and interactive dashboards.",
+    longDescription: "Building data pipeline for NBA statistics with predictive modeling and interactive dashboards for real-time analysis.",
     achievements: [
-      "In active development",
-      "Implementing ML prediction algorithms",
-      "Building data visualization dashboards",
-      "Creating interactive user interface"
+      "Implementing advanced ML prediction algorithms",
+      "Building comprehensive data visualization dashboards",
+      "Creating interactive user interface with real-time updates",
+      "Integrating multiple NBA API data sources"
     ],
-    technologies: ["Python", "Machine Learning", "Data Analytics", "NBA API", "Visualization"],
+    technologies: ["Python", "Machine Learning", "Data Analytics", "NBA API", "Visualization", "Pandas"],
     metrics: {
       status: "In Progress",
       focus: "ML/Analytics",
@@ -103,21 +54,21 @@ const projects = [
     icon: Database
   },
   {
-    id: 5,
+    id: 3,
     title: "QuranKi",
     subtitle: "Spaced Repetition Memorization App",
     period: "Contribution",
     type: "Open Source",
-    featured: false,
+    featured: true,
     description: "Contributed to a spaced repetition Quran memorization web app with full-stack development contributions.",
     longDescription: "Worked on both frontend and backend components to enhance the memorization experience through spaced repetition algorithms.",
     achievements: [
       "Full-stack contributions to memorization platform",
       "Implemented spaced repetition algorithms",
       "Enhanced user experience and functionality",
-      "Contributed to open-source project"
+      "Contributed to open-source educational project"
     ],
-    technologies: ["Full Stack", "Spaced Repetition", "Web App", "Open Source"],
+    technologies: ["Full Stack", "Spaced Repetition", "Web App", "Open Source", "NextJS", "React"],
     metrics: {
       type: "Open Source",
       focus: "Education",
@@ -129,9 +80,6 @@ const projects = [
 ];
 
 export default function ProjectsSection() {
-  const featuredProjects = projects.filter(p => p.featured);
-  const otherProjects = projects.filter(p => !p.featured);
-
   return (
     <section id="projects" className="py-20 bg-gradient-to-br from-slate-50 via-purple-50/40 to-emerald-50/40 dark:from-slate-800 dark:via-slate-900 dark:to-slate-800 relative overflow-hidden">
       {/* Background Elements */}
@@ -159,8 +107,8 @@ export default function ProjectsSection() {
         </motion.div>
 
         {/* Featured Projects */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-16">
-          {featuredProjects.map((project, index) => (
+        <div className="grid lg:grid-cols-3 gap-6 mb-16">
+          {projects.map((project, index) => (
             <motion.div
               key={project.id}
               variants={scaleIn}
@@ -182,9 +130,7 @@ export default function ProjectsSection() {
                         <h3 className="text-xl font-bold text-slate-900 dark:text-white">
                           {project.title}
                         </h3>
-                        {project.featured && (
-                          <Star className="w-4 h-4 text-yellow-500 fill-current" />
-                        )}
+                        <Star className="w-4 h-4 text-yellow-500 fill-current" />
                       </div>
                       <p className="text-sm text-slate-500 dark:text-slate-400">
                         {project.subtitle}
@@ -197,11 +143,9 @@ export default function ProjectsSection() {
                       "text-xs font-medium px-2 py-1 rounded-full",
                       project.type === "Research" 
                         ? "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300"
-                        : project.type === "Startup"
-                        ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300"
-                        : project.type === "Client Project"
-                        ? "bg-orange-100 text-orange-700 dark:bg-orange-900 dark:text-orange-300"
-                        : "bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300"
+                        : project.type === "Personal"
+                        ? "bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300"
+                        : "bg-teal-100 text-teal-700 dark:bg-teal-900 dark:text-teal-300"
                     )}>
                       {project.type}
                     </span>
@@ -260,91 +204,12 @@ export default function ProjectsSection() {
                     <ChevronRight className="w-4 h-4" />
                   </motion.button>
                   
-                  {project.link && (
-                    <motion.a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      <span>Visit Site</span>
-                    </motion.a>
-                  )}
+
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
-
-        {/* Other Projects */}
-        <motion.div variants={fadeInUp}>
-          <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 text-center">
-            Other Notable Projects
-          </h3>
-          
-          <div className="grid md:grid-cols-2 gap-6">
-            {otherProjects.map((project) => (
-              <motion.div
-                key={project.id}
-                variants={scaleIn}
-                whileHover={{ scale: 1.02 }}
-                className="bg-white dark:bg-slate-900 rounded-xl p-5 shadow-md border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-all duration-300"
-              >
-                <div className="flex items-start gap-3 mb-3">
-                  <div className={cn(
-                    "w-10 h-10 rounded-lg bg-gradient-to-r flex items-center justify-center text-white flex-shrink-0",
-                    project.gradient
-                  )}>
-                    <project.icon className="w-5 h-5" />
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="font-bold text-slate-900 dark:text-white mb-1">
-                      {project.title}
-                    </h4>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">
-                      {project.subtitle}
-                    </p>
-                  </div>
-                  <span className={cn(
-                    "text-xs font-medium px-2 py-1 rounded-full flex-shrink-0",
-                    project.type === "Personal" 
-                      ? "bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300"
-                      : "bg-teal-100 text-teal-700 dark:bg-teal-900 dark:text-teal-300"
-                  )}>
-                    {project.type}
-                  </span>
-                </div>
-
-                <p className="text-sm text-slate-600 dark:text-slate-300 mb-3">
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-1 mb-3">
-                  {project.technologies.slice(0, 4).map((tech, i) => (
-                    <span
-                      key={i}
-                      className="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                  {project.technologies.length > 4 && (
-                    <span className="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded">
-                      +{project.technologies.length - 4} more
-                    </span>
-                  )}
-                </div>
-
-                <div className="text-xs text-slate-500 dark:text-slate-400">
-                  {project.period}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
 
         {/* Bottom CTA */}
         <motion.div variants={fadeInUp} className="text-center mt-16">

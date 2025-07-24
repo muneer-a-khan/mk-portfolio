@@ -123,7 +123,7 @@ export default function ExperienceSection() {
                 {/* Content Card */}
                 <div className={cn(
                   "ml-20 md:ml-0 w-full md:w-5/12",
-                  index % 2 === 0 ? "md:pr-12" : "md:pl-12"
+                  index % 2 === 0 ? "md:pr-6" : "md:pl-6"
                 )}>
                   <motion.div
                     whileHover={{ scale: 1.02, y: -5 }}

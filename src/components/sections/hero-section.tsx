@@ -262,16 +262,7 @@ export default function HeroSection() {
                 </div>
               </motion.div>
 
-              <motion.div
-                animate={{ x: [5, -15, 5], y: [0, 10, 0] }}
-                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 3 }}
-                className="absolute bottom-20 -left-8 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-xl p-3 shadow-lg"
-              >
-                <div className="text-center">
-                  <div className="text-lg font-bold">5+</div>
-                  <div className="text-xs opacity-90">Projects</div>
-                </div>
-              </motion.div>
+
             </div>
           </motion.div>
         </div>
