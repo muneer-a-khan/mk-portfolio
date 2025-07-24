@@ -96,7 +96,7 @@ const achievements = [
 
 export default function AboutSection() {
   return (
-    <section className="py-20 bg-white dark:bg-slate-900 relative overflow-hidden">
+    <section id="about" className="py-20 bg-gradient-to-br from-white via-emerald-50/30 to-cyan-50/30 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-20 right-10 w-72 h-72 bg-blue-100/10 rounded-full blur-3xl" />
       <div className="absolute bottom-20 left-10 w-96 h-96 bg-purple-100/10 rounded-full blur-3xl" />
@@ -122,22 +122,94 @@ export default function AboutSection() {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-12 mb-16">
-          {/* Left Column - Skills */}
-          <div className="lg:col-span-2 space-y-8">
+        <div className="grid lg:grid-cols-2 gap-12 mb-16">
+          {/* Left Column - Education & Achievements */}
+          <div className="space-y-8">
+            {/* Education */}
             <motion.div variants={fadeInLeft}>
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3">
+              <div className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-slate-800 dark:to-slate-700 rounded-2xl p-8 border border-blue-200 dark:border-slate-600">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center text-white">
+                    <GraduationCap className="w-8 h-8" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
+                      Education
+                    </h3>
+                    <p className="text-slate-600 dark:text-slate-300">
+                      University of Virginia
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="text-xl font-semibold text-slate-900 dark:text-white">
+                      B.S. in Computer Science
+                    </h4>
+                    <p className="text-slate-600 dark:text-slate-300">
+                      School of Engineering and Applied Sciences
+                    </p>
+                    <p className="text-slate-500 dark:text-slate-400">
+                      Expected Graduation: May 2027
+                    </p>
+                  </div>
+                  
+                  <div className="pt-4 border-t border-slate-200 dark:border-slate-600">
+                    <p className="text-lg text-slate-700 dark:text-slate-300 mb-3">
+                      GPA: <span className="text-2xl font-bold text-blue-600">3.74/4.00</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Achievements */}
+            <motion.div variants={fadeInLeft}>
+              <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-6">
+                Key Achievements
+              </h4>
+              <div className="grid gap-4">
+                {achievements.map((achievement, index) => (
+                  <motion.div
+                    key={index}
+                    variants={fadeInUp}
+                    whileHover={{ scale: 1.02, x: 5 }}
+                    className="flex items-start gap-4 p-6 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm"
+                  >
+                    <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center text-white flex-shrink-0">
+                      <achievement.icon className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h5 className="font-bold text-slate-900 dark:text-white text-lg mb-1">
+                        {achievement.title}
+                      </h5>
+                      <p className="text-slate-600 dark:text-slate-300">
+                        {achievement.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Right Column - Compact Skills & Fun Fact */}
+          <div className="space-y-8">
+            {/* Compact Technical Skills */}
+            <motion.div variants={fadeInRight}>
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
                 <Code className="w-7 h-7 text-blue-600" />
                 Technical Skills
               </h3>
               
-              <div className="grid md:grid-cols-2 gap-6">
-                {skillCategories.map((category) => (
+              <div className="grid gap-6">
+                {skillCategories.slice(0, 2).map((category) => (
                   <motion.div
                     key={category.id}
                     variants={fadeInUp}
                     whileHover={{ scale: 1.02 }}
-                    className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700"
+                    className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm"
                   >
                     <div className="flex items-center gap-3 mb-4">
                       <div className={cn(
@@ -151,116 +223,59 @@ export default function AboutSection() {
                       </h4>
                     </div>
                     
-                    <div className="space-y-3">
-                      {category.skills.map((skill, index) => (
-                        <div key={index} className="space-y-1">
-                          <div className="flex justify-between items-center">
-                            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
-                              {skill.name}
-                            </span>
-                            <span className="text-xs text-slate-500 dark:text-slate-400">
-                              {skill.level}%
-                            </span>
-                          </div>
-                          <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
-                            <motion.div
-                              initial={{ width: 0 }}
-                              whileInView={{ width: `${skill.level}%` }}
-                              transition={{ duration: 1, delay: index * 0.1 }}
-                              className={cn(
-                                "h-2 rounded-full bg-gradient-to-r",
-                                category.gradient
-                              )}
-                            />
-                          </div>
-                        </div>
+                    <div className="flex flex-wrap gap-2">
+                      {category.skills.slice(0, 6).map((skill, index) => (
+                        <motion.div
+                          key={index}
+                          whileHover={{ scale: 1.05 }}
+                          className={cn(
+                            "px-3 py-1 rounded-lg text-sm font-medium text-white",
+                            `bg-gradient-to-r ${category.gradient}`
+                          )}
+                        >
+                          {skill.name}
+                        </motion.div>
                       ))}
+                      {category.skills.length > 6 && (
+                        <div className="px-3 py-1 rounded-lg text-sm font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">
+                          +{category.skills.length - 6} more
+                        </div>
+                      )}
                     </div>
                   </motion.div>
                 ))}
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Right Column - Education & Achievements */}
-          <div className="space-y-8">
-            {/* Education */}
-            <motion.div variants={fadeInRight}>
-              <div className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-slate-800 dark:to-slate-700 rounded-2xl p-6 border border-blue-200 dark:border-slate-600">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center text-white">
-                    <GraduationCap className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-bold text-slate-900 dark:text-white">
-                      Education
-                    </h4>
-                    <p className="text-sm text-slate-600 dark:text-slate-300">
-                      University of Virginia
-                    </p>
-                  </div>
-                </div>
                 
-                <div className="space-y-3">
-                  <div>
-                    <h5 className="font-semibold text-slate-900 dark:text-white">
-                      B.S. in Computer Science
-                    </h5>
-                    <p className="text-sm text-slate-600 dark:text-slate-300">
-                      School of Engineering and Applied Sciences
-                    </p>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">
-                      Expected Graduation: May 2027
-                    </p>
+                {/* Additional Skills Summary */}
+                <motion.div 
+                  variants={fadeInUp}
+                  className="bg-gradient-to-r from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-600 rounded-2xl p-6"
+                >
+                  <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-3">
+                    Also Experienced With
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {[...skillCategories[2].skills, ...skillCategories[3].skills].slice(0, 8).map((skill, index) => (
+                      <div
+                        key={index}
+                        className="px-3 py-1 rounded-lg text-sm font-medium bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600"
+                      >
+                        {skill.name}
+                      </div>
+                    ))}
                   </div>
-                  
-                  <div className="pt-3 border-t border-slate-200 dark:border-slate-600">
-                    <p className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                      GPA: <span className="text-blue-600 font-bold">3.74/4.00</span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Achievements */}
-            <motion.div variants={fadeInRight}>
-              <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-4">
-                Key Achievements
-              </h4>
-              <div className="space-y-3">
-                {achievements.map((achievement, index) => (
-                  <motion.div
-                    key={index}
-                    variants={fadeInUp}
-                    whileHover={{ scale: 1.02 }}
-                    className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700"
-                  >
-                    <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center text-white flex-shrink-0">
-                      <achievement.icon className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <h5 className="font-semibold text-slate-900 dark:text-white text-sm">
-                        {achievement.title}
-                      </h5>
-                      <p className="text-xs text-slate-600 dark:text-slate-300">
-                        {achievement.description}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
+                </motion.div>
               </div>
             </motion.div>
 
             {/* Fun Fact */}
             <motion.div variants={fadeInRight}>
               <div className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 rounded-2xl p-6 border border-emerald-200 dark:border-emerald-700">
-                <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
+                <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
                   Fun Fact 🏀
                 </h4>
-                <p className="text-sm text-slate-600 dark:text-slate-300">
+                <p className="text-slate-600 dark:text-slate-300">
                   I'm currently working on dunking by doing plyometrics twice a week! 
-                  Combining physical fitness with mental coding challenges keeps me balanced.
+                  Combining physical fitness with mental coding challenges keeps me balanced and energized.
                 </p>
               </div>
             </motion.div>

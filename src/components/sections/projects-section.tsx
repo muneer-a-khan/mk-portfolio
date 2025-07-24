@@ -133,7 +133,7 @@ export default function ProjectsSection() {
   const otherProjects = projects.filter(p => !p.featured);
 
   return (
-    <section className="py-20 bg-slate-50 dark:bg-slate-800 relative overflow-hidden">
+    <section id="projects" className="py-20 bg-gradient-to-br from-slate-50 via-purple-50/40 to-emerald-50/40 dark:from-slate-800 dark:via-slate-900 dark:to-slate-800 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-1/4 left-0 w-96 h-96 bg-gradient-to-r from-blue-100/20 to-purple-100/20 rounded-full blur-3xl" />
       <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-gradient-to-r from-emerald-100/20 to-teal-100/20 rounded-full blur-3xl" />

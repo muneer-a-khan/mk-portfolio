@@ -77,7 +77,7 @@ const experiences = [
 
 export default function ExperienceSection() {
   return (
-    <section className="py-20 bg-white dark:bg-slate-900 relative overflow-hidden">
+    <section id="experience" className="py-20 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-100/10 rounded-full blur-3xl" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-100/10 rounded-full blur-3xl" />

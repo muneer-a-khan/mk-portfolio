@@ -1,19 +1,25 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail, MapPin } from "lucide-react";
 import Image from "next/image";
 import { cn, staggerContainer, fadeInUp, fadeInLeft, fadeInRight } from "@/lib/utils";
+import { TypingAnimation, RotatingText } from "@/components/ui/typing-animation";
+import { useState } from "react";
 
 export default function HeroSection() {
+  const [showDescription, setShowDescription] = useState(false);
+  const [showRotatingText, setShowRotatingText] = useState(false);
+
+  const rotatingTexts = [
+    "CS Student",
+    "Data Analyst", 
+    "Software Developer",
+    "Frontend Designer"
+  ];
+
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
-      
-      {/* Floating Elements */}
-      <div className="absolute top-20 left-20 w-72 h-72 bg-blue-100/20 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-100/20 rounded-full blur-3xl animate-pulse delay-1000" />
+    <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
       
       <motion.div
         variants={staggerContainer}
@@ -24,17 +30,53 @@ export default function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Text Content */}
           <div className="space-y-8">
-            <motion.div variants={fadeInLeft} className="space-y-4">
-              <motion.h1 
-                className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 dark:from-white dark:via-blue-300 dark:to-white bg-clip-text text-transparent leading-tight"
-              >
-                Hello 👋, I'm{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  Muneer Khan
-                </span>
+            <motion.div variants={fadeInLeft} className="space-y-6">
+              <motion.h1 className="text-4xl md:text-6xl font-bold leading-tight">
+                <TypingAnimation
+                  text="Hello 👋, I'm "
+                  speed={80}
+                  className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 dark:from-white dark:via-blue-300 dark:to-white bg-clip-text text-transparent"
+                  onComplete={() => setShowDescription(true)}
+                />
+                {showDescription && (
+                  <motion.span
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="block bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent"
+                  >
+                    <TypingAnimation
+                      text="Muneer Khan"
+                      speed={100}
+                      delay={200}
+                      onComplete={() => setShowRotatingText(true)}
+                    />
+                  </motion.span>
+                )}
               </motion.h1>
               
-              <motion.div className="flex items-center gap-3 text-lg text-slate-600 dark:text-slate-300">
+              {showRotatingText && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="text-2xl md:text-3xl font-semibold"
+                >
+                  <span className="text-slate-700 dark:text-slate-300">I'm a </span>
+                  <RotatingText
+                    texts={rotatingTexts}
+                    className="bg-gradient-to-r from-emerald-600 via-blue-600 to-purple-600 bg-clip-text text-transparent"
+                    speed={120}
+                    delay={2500}
+                  />
+                </motion.div>
+              )}
+              
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: showRotatingText ? 1 : 0 }}
+                transition={{ delay: 1 }}
+                className="flex items-center gap-3 text-lg text-slate-600 dark:text-slate-300"
+              >
                 <MapPin className="w-5 h-5 text-blue-600" />
                 <span>Ashburn, VA</span>
                 <span>•</span>
@@ -42,144 +84,225 @@ export default function HeroSection() {
               </motion.div>
             </motion.div>
 
-            <motion.p 
-              variants={fadeInLeft}
-              className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-lg"
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: showRotatingText ? 1 : 0, y: showRotatingText ? 0 : 30 }}
+              transition={{ delay: 1.5 }}
+              className="space-y-6"
             >
-              I'm a Computer Science student at the University of Virginia with a passion for 
-              <span className="text-blue-600 font-semibold"> software development</span>, 
-              <span className="text-purple-600 font-semibold"> frontend design</span>, and 
-              <span className="text-emerald-600 font-semibold"> data analytics</span>. 
-              I enjoy building full-stack applications and working on impactful projects.
-            </motion.p>
+              <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-lg">
+                I'm passionate about creating impactful solutions through 
+                <span className="text-blue-600 font-semibold"> machine learning</span>, 
+                <span className="text-purple-600 font-semibold"> full-stack development</span>, and 
+                <span className="text-emerald-600 font-semibold"> innovative research</span>. 
+                Currently building the future one project at a time.
+              </p>
 
-            <motion.div variants={fadeInLeft} className="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
-                <span className="text-slate-600 dark:text-slate-300">
-                  Currently working on <span className="font-semibold text-slate-900 dark:text-white">NBA-Stats-Predictor</span>
-                </span>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
+                  <span className="text-slate-600 dark:text-slate-300">
+                    Currently working on <span className="font-semibold text-slate-900 dark:text-white">NBA-Stats-Predictor</span>
+                  </span>
+                </div>
+                
+                <div className="flex items-center gap-3">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse" />
+                  <span className="text-slate-600 dark:text-slate-300">
+                    Research at <span className="font-semibold text-slate-900 dark:text-white">UVA Robotics Lab</span>
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <div className="w-3 h-3 bg-purple-500 rounded-full animate-pulse" />
+                  <span className="text-slate-600 dark:text-slate-300">
+                    Building <span className="font-semibold text-slate-900 dark:text-white">AdmitifyAI</span> startup
+                  </span>
+                </div>
               </div>
-              
-              <div className="flex items-center gap-3">
-                <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse" />
-                <span className="text-slate-600 dark:text-slate-300">
-                  Learning <span className="font-semibold text-slate-900 dark:text-white">Advanced ML & Next.js</span>
-                </span>
+
+              {/* Contact Info */}
+              <div className="flex flex-wrap gap-4">
+                <motion.a
+                  href="mailto:muneerkhan992000@gmail.com"
+                  whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(59, 130, 246, 0.3)" }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg"
+                >
+                  <Mail className="w-4 h-4" />
+                  <span>Get in Touch</span>
+                </motion.a>
+                
+                <motion.a
+                  href="/resume.pdf"
+                  target="_blank"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center gap-2 px-6 py-3 bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white rounded-xl hover:bg-slate-200 dark:hover:bg-slate-600 transition-all duration-300 border border-slate-200 dark:border-slate-600"
+                >
+                  <span>View Resume</span>
+                </motion.a>
               </div>
-            </motion.div>
 
-            {/* Contact Info */}
-            <motion.div variants={fadeInLeft} className="flex flex-wrap gap-4">
-              <motion.a
-                href="mailto:muneerkhan992000@gmail.com"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-              >
-                <Mail className="w-4 h-4" />
-                <span>Email</span>
-              </motion.a>
-              
-              <motion.a
-                href="tel:571-639-8965"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-2 px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors"
-              >
-                <Phone className="w-4 h-4" />
-                <span>Call</span>
-              </motion.a>
-            </motion.div>
-
-            {/* Social Links */}
-            <motion.div variants={fadeInLeft} className="flex gap-4">
-              <motion.a
-                href="https://github.com/muneer-a-khan"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                className="w-12 h-12 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-lg flex items-center justify-center hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors"
-              >
-                <Github className="w-5 h-5" />
-              </motion.a>
-              
-              <motion.a
-                href="https://linkedin.com/in/muneer-khan-one"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1, rotate: -5 }}
-                className="w-12 h-12 bg-blue-600 text-white rounded-lg flex items-center justify-center hover:bg-blue-700 transition-colors"
-              >
-                <Linkedin className="w-5 h-5" />
-              </motion.a>
+              {/* Social Links */}
+              <div className="flex gap-4">
+                <motion.a
+                  href="https://github.com/muneer-a-khan"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="w-14 h-14 bg-gradient-to-r from-slate-800 to-slate-900 dark:from-white dark:to-slate-100 text-white dark:text-slate-900 rounded-xl flex items-center justify-center hover:shadow-lg transition-all duration-300"
+                >
+                  <Github className="w-6 h-6" />
+                </motion.a>
+                
+                <motion.a
+                  href="https://linkedin.com/in/muneer-khan-one"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.2, rotate: -5 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="w-14 h-14 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl flex items-center justify-center hover:shadow-lg transition-all duration-300"
+                >
+                  <Linkedin className="w-6 h-6" />
+                </motion.a>
+              </div>
             </motion.div>
           </div>
 
           {/* Right Column - Profile Image */}
           <motion.div 
-            variants={fadeInRight}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: showRotatingText ? 1 : 0, scale: showRotatingText ? 1 : 0.8 }}
+            transition={{ delay: 2, duration: 0.8 }}
             className="flex justify-center lg:justify-end"
           >
             <div className="relative">
-              {/* Profile Image Container */}
+              {/* Profile Image Container with Enhanced Animations */}
               <motion.div
                 animate={{ 
-                  rotate: [0, 1, -1, 0],
+                  rotate: [0, 2, -2, 0],
+                  scale: [1, 1.02, 1],
                 }}
                 transition={{ 
-                  duration: 6,
+                  duration: 8,
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
-                className="relative w-80 h-80 rounded-3xl overflow-hidden bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 p-1"
+                className="relative w-80 h-80 rounded-3xl overflow-hidden p-1"
+                style={{
+                  background: "linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4, #10b981)",
+                  backgroundSize: "400% 400%",
+                }}
               >
-                <div className="w-full h-full rounded-3xl bg-white dark:bg-slate-800 flex items-center justify-center">
-                  {/* Placeholder for profile image */}
-                  <div className="w-full h-full rounded-3xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-800 flex items-center justify-center">
-                    <span className="text-6xl">👨‍💻</span>
-                  </div>
+                <motion.div
+                  animate={{
+                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                  style={{
+                    background: "linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4, #10b981)",
+                    backgroundSize: "400% 400%",
+                  }}
+                  className="absolute inset-0 rounded-3xl"
+                />
+                
+                <div className="relative w-full h-full rounded-3xl bg-white dark:bg-slate-800 overflow-hidden">
+                  <Image 
+                    src="/mk-pfp.JPG"
+                    alt="Muneer Khan"
+                    width={400}
+                    height={400}
+                    className="w-full h-full object-cover rounded-3xl"
+                    priority
+                  />
+                  
+                  {/* Overlay gradient for better text visibility */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent rounded-3xl" />
                 </div>
               </motion.div>
               
-              {/* Floating Stats */}
+              {/* Enhanced Floating Stats */}
               <motion.div
-                animate={{ y: [-10, 10, -10] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-4 -left-4 bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-lg border border-slate-200 dark:border-slate-700"
+                animate={{ y: [-10, 10, -10], rotate: [0, 5, -5, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -top-6 -left-6 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-2xl p-4 shadow-xl border-2 border-white/20"
               >
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-blue-600">3.74</div>
-                  <div className="text-sm text-slate-600 dark:text-slate-300">GPA</div>
+                  <div className="text-2xl font-bold">3.74</div>
+                  <div className="text-sm opacity-90">GPA</div>
                 </div>
               </motion.div>
               
               <motion.div
-                animate={{ y: [10, -10, 10] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                className="absolute -bottom-4 -right-4 bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-lg border border-slate-200 dark:border-slate-700"
+                animate={{ y: [10, -15, 10], rotate: [0, -5, 5, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                className="absolute -bottom-6 -right-6 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl p-4 shadow-xl border-2 border-white/20"
               >
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-purple-600">2027</div>
-                  <div className="text-sm text-slate-600 dark:text-slate-300">Graduation</div>
+                  <div className="text-2xl font-bold">2027</div>
+                  <div className="text-sm opacity-90">Graduation</div>
+                </div>
+              </motion.div>
+
+              {/* Additional floating elements */}
+              <motion.div
+                animate={{ x: [-5, 15, -5], y: [0, -10, 0] }}
+                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute top-16 -right-8 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-xl p-3 shadow-lg"
+              >
+                <div className="text-center">
+                  <div className="text-lg font-bold">UVA</div>
+                  <div className="text-xs opacity-90">CS</div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                animate={{ x: [5, -15, 5], y: [0, 10, 0] }}
+                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+                className="absolute bottom-20 -left-8 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-xl p-3 shadow-lg"
+              >
+                <div className="text-center">
+                  <div className="text-lg font-bold">5+</div>
+                  <div className="text-xs opacity-90">Projects</div>
                 </div>
               </motion.div>
             </div>
           </motion.div>
         </div>
 
-        {/* Scroll Indicator */}
+        {/* Enhanced Scroll Indicator */}
         <motion.div
-          variants={fadeInUp}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: showRotatingText ? 1 : 0 }}
+          transition={{ delay: 3 }}
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         >
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="flex flex-col items-center gap-2 text-slate-600 dark:text-slate-300"
+            className="flex flex-col items-center gap-3 text-slate-600 dark:text-slate-300"
           >
-            <span className="text-sm font-medium">Scroll to explore</span>
-            <ArrowDown className="w-5 h-5" />
+            <span className="text-sm font-medium">Scroll to explore my work</span>
+            <motion.div
+              animate={{ 
+                y: [0, 5, 0],
+                scale: [1, 1.1, 1]
+              }}
+              transition={{ 
+                duration: 1.5, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }}
+              className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white"
+            >
+              <ArrowDown className="w-4 h-4" />
+            </motion.div>
           </motion.div>
         </motion.div>
       </motion.div>
