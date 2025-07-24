@@ -5,6 +5,7 @@ import { ArrowDown, Github, Linkedin, Mail, MapPin } from "lucide-react";
 import Image from "next/image";
 import { cn, staggerContainer, fadeInUp, fadeInLeft, fadeInRight } from "@/lib/utils";
 import { TypingAnimation, RotatingText } from "@/components/ui/typing-animation";
+import Threads from "@/components/ui/threads";
 import { useState } from "react";
 
 export default function HeroSection() {
@@ -20,6 +21,15 @@ export default function HeroSection() {
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
+      {/* Threads Background */}
+      <div className="absolute inset-0">
+        <Threads
+          amplitude={1}
+          distance={0}
+          enableMouseInteraction={true}
+          color={[0.2, 0.4, 0.8]}
+        />
+      </div>
       
       <motion.div
         variants={staggerContainer}
@@ -77,7 +87,6 @@ export default function HeroSection() {
                 transition={{ delay: 1 }}
                 className="flex items-center gap-3 text-lg text-slate-600 dark:text-slate-300"
               >
-                <MapPin className="w-5 h-5 text-blue-600" />
                 <span>Ashburn, VA</span>
                 <span>•</span>
                 <span>UVA Computer Science</span>
@@ -90,7 +99,7 @@ export default function HeroSection() {
               transition={{ delay: 1.5 }}
               className="space-y-6"
             >
-              <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-lg">
+              <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-lg mt-22">
                 I'm passionate about creating impactful solutions through 
                 <span className="text-blue-600 font-semibold"> machine learning</span>, 
                 <span className="text-purple-600 font-semibold"> full-stack development</span>, and 
@@ -102,7 +111,7 @@ export default function HeroSection() {
                 <div className="flex items-center gap-3">
                   <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
                   <span className="text-slate-600 dark:text-slate-300">
-                    Currently working on <span className="font-semibold text-slate-900 dark:text-white">NBA-Stats-Predictor</span>
+                    Currently working at <span className="font-semibold text-slate-900 dark:text-white">Zyglio</span> as a Software Engineer Intern
                   </span>
                 </div>
                 
@@ -131,16 +140,6 @@ export default function HeroSection() {
                 >
                   <Mail className="w-4 h-4" />
                   <span>Get in Touch</span>
-                </motion.a>
-                
-                <motion.a
-                  href="/resume.pdf"
-                  target="_blank"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-6 py-3 bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white rounded-xl hover:bg-slate-200 dark:hover:bg-slate-600 transition-all duration-300 border border-slate-200 dark:border-slate-600"
-                >
-                  <span>View Resume</span>
                 </motion.a>
               </div>
 

@@ -4,6 +4,7 @@ import ExperienceSection from "@/components/sections/experience-section";
 import ProjectsSection from "@/components/sections/projects-section";
 import CanvasSection from "@/components/sections/canvas-section";
 import ContactSection from "@/components/sections/contact-section";
+import FooterSection from "@/components/sections/footer-section";
 import Navbar from "@/components/ui/navbar";
 import AnimatedBackground from "@/components/ui/animated-background";
 
@@ -20,6 +21,7 @@ export default function Home() {
         <CanvasSection />
         <ContactSection />
       </main>
+      <FooterSection />
     </>
   );
 }

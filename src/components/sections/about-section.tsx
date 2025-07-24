@@ -273,19 +273,39 @@ export default function AboutSection() {
         <motion.div variants={fadeInUp} className="mt-12 text-center">
           <div className="inline-flex items-center gap-8 bg-slate-800/50 rounded-lg p-6 border border-slate-700">
             <div className="text-center">
-              <div className="text-2xl font-bold text-blue-400">5</div>
+              <div className="flex items-center justify-center gap-2 mb-1">
+                <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                  <Code className="w-3 h-3 text-white" />
+                </div>
+                <div className="text-2xl font-bold text-blue-400">5</div>
+              </div>
               <div className="text-xs text-slate-300">Projects</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-green-400">2</div>
+              <div className="flex items-center justify-center gap-2 mb-1">
+                <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                  <BookOpen className="w-3 h-3 text-white" />
+                </div>
+                <div className="text-2xl font-bold text-green-400">2</div>
+              </div>
               <div className="text-xs text-slate-300">Internships</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-orange-400">1</div>
+              <div className="flex items-center justify-center gap-2 mb-1">
+                <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center">
+                  <Trophy className="w-3 h-3 text-white" />
+                </div>
+                <div className="text-2xl font-bold text-orange-400">1</div>
+              </div>
               <div className="text-xs text-slate-300">Research</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-yellow-400">1</div>
+              <div className="flex items-center justify-center gap-2 mb-1">
+                <div className="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center">
+                  <GraduationCap className="w-3 h-3 text-white" />
+                </div>
+                <div className="text-2xl font-bold text-yellow-400">1</div>
+              </div>
               <div className="text-xs text-slate-300">Startup</div>
             </div>
           </div>

@@ -51,7 +51,7 @@ const socialLinks = [
     icon: ExternalLink,
     href: "https://admitifyai.com",
     gradient: "from-emerald-600 to-teal-600",
-    description: "My startup project"
+    description: "My startup"
   }
 ];
 
@@ -121,7 +121,7 @@ export default function ContactSection() {
                           {method.description}
                         </p>
                       </div>
-                      <ExternalLink className="w-5 h-5 text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition-colors" />
+
                     </div>
                   </motion.a>
                 ))}
@@ -168,120 +168,44 @@ export default function ContactSection() {
             </div>
           </motion.div>
 
-          {/* Right Column - Quick Contact Form */}
-          <motion.div variants={fadeInRight}>
-            <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 border border-slate-200 dark:border-slate-700 shadow-lg">
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
-                <Send className="w-7 h-7 text-blue-600" />
-                Quick Message
+          {/* Right Column - Call to Action */}
+          <motion.div variants={fadeInRight} className="flex flex-col justify-start h-full">
+            <div className="bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl p-8 text-white text-center">
+              <h3 className="text-3xl font-bold mb-6">
+                Ready to Build Something Amazing?
               </h3>
+              <p className="text-blue-100 mb-8 text-lg leading-relaxed">
+                Whether it's a full-stack application, machine learning project, or research collaboration, 
+                I'm excited to discuss how we can work together to create impactful solutions.
+              </p>
               
-              <form className="space-y-6">
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200 text-slate-900 dark:text-white"
-                    placeholder="Your name"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200 text-slate-900 dark:text-white"
-                    placeholder="your.email@example.com"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                    Message
-                  </label>
-                  <textarea
-                    rows={4}
-                    className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200 text-slate-900 dark:text-white resize-none"
-                    placeholder="Tell me about your project or opportunity..."
-                  />
-                </div>
-                
-                <motion.button
-                  type="submit"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-300 flex items-center justify-center gap-2"
+              <div className="space-y-4">
+                <motion.a
+                  href="mailto:muneerkhan992000@gmail.com"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full px-8 py-4 bg-white text-blue-600 rounded-xl font-medium hover:bg-blue-50 transition-colors flex items-center justify-center gap-3 text-lg"
                 >
-                  <Send className="w-4 h-4" />
-                  Send Message
-                </motion.button>
-              </form>
-              
-              <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-700">
-                <p className="text-sm text-blue-700 dark:text-blue-300 text-center">
-                  <strong>Note:</strong> For the best response time, please email me directly at{" "}
-                  <a 
-                    href="mailto:muneerkhan992000@gmail.com" 
-                    className="underline hover:no-underline"
-                  >
-                    muneerkhan992000@gmail.com
-                  </a>
-                </p>
+                  <Mail className="w-5 h-5" />
+                  Email Me
+                </motion.a>
+                
+                <motion.a
+                  href="https://linkedin.com/in/muneer-khan-one"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full px-8 py-4 bg-blue-800 text-white rounded-xl font-medium hover:bg-blue-700 transition-colors flex items-center justify-center gap-3 text-lg"
+                >
+                  <Linkedin className="w-5 h-5" />
+                  Connect on LinkedIn
+                </motion.a>
               </div>
             </div>
           </motion.div>
         </div>
 
-        {/* Bottom Section - Call to Action */}
-        <motion.div variants={fadeInUp} className="text-center mt-16">
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
-            <h3 className="text-2xl font-bold mb-4">
-              Ready to Build Something Amazing?
-            </h3>
-            <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-              Whether it's a full-stack application, machine learning project, or research collaboration, 
-              I'm excited to discuss how we can work together to create impactful solutions.
-            </p>
-            
-            <div className="flex flex-wrap justify-center gap-4">
-              <motion.a
-                href="mailto:muneerkhan992000@gmail.com"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 bg-white text-blue-600 rounded-lg font-medium hover:bg-blue-50 transition-colors flex items-center gap-2"
-              >
-                <Mail className="w-4 h-4" />
-                Email Me
-              </motion.a>
-              
-              <motion.a
-                href="https://linkedin.com/in/muneer-khan-one"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 bg-blue-800 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center gap-2"
-              >
-                <Linkedin className="w-4 h-4" />
-                Connect on LinkedIn
-              </motion.a>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Footer */}
-        <motion.div variants={fadeInUp} className="text-center mt-16 pt-8 border-t border-slate-200 dark:border-slate-700">
-          <p className="text-slate-600 dark:text-slate-400 flex items-center justify-center gap-2">
-            Built by Muneer Khan
-          </p>
-          <p className="text-sm text-slate-500 dark:text-slate-500 mt-2">
-            © 2025 Muneer Khan. All rights reserved.
-          </p>
-        </motion.div>
       </motion.div>
     </section>
   );

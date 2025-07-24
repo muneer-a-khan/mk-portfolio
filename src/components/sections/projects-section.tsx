@@ -24,7 +24,7 @@ const projects = [
     metrics: {
       precision: "83.8%",
       recall: "96.7%",
-      improvement: "70% → 16%"
+      "False Positive Rate": "70% → 16%"
     },
     gradient: "from-blue-600 to-purple-600",
     icon: Bot
@@ -115,7 +115,7 @@ export default function ProjectsSection() {
               whileHover={{ y: -8 }}
               className="group"
             >
-              <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-lg border border-slate-200 dark:border-slate-700 hover:shadow-2xl transition-all duration-500 h-full">
+              <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 shadow-lg border border-slate-200 dark:border-slate-700 hover:shadow-2xl transition-all duration-500 h-full">
                 {/* Project Header */}
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-3">
@@ -126,12 +126,9 @@ export default function ProjectsSection() {
                       <project.icon className="w-6 h-6" />
                     </div>
                     <div>
-                      <div className="flex items-center gap-2">
-                        <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                          {project.title}
-                        </h3>
-                        <Star className="w-4 h-4 text-yellow-500 fill-current" />
-                      </div>
+                      <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                        {project.title}
+                      </h3>
                       <p className="text-sm text-slate-500 dark:text-slate-400">
                         {project.subtitle}
                       </p>
@@ -182,30 +179,49 @@ export default function ProjectsSection() {
                 </div>
 
                 {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech, i) => (
-                    <span
-                      key={i}
-                      className="text-xs font-medium px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-md"
+                <div className="flex flex-wrap gap-2 mb-4 justify-center">
+                  {project.technologies.map((tech, i) => {
+                    // Assign a color based on index for variety
+                    const colors = [
+                      'bg-blue-100 text-blue-800',
+                      'bg-purple-100 text-purple-800',
+                      'bg-emerald-100 text-emerald-800',
+                      'bg-pink-100 text-pink-800',
+                      'bg-yellow-100 text-yellow-800',
+                      'bg-cyan-100 text-cyan-800',
+                      'bg-orange-100 text-orange-800',
+                      'bg-slate-100 text-slate-800',
+                    ];
+                    const color = colors[i % colors.length];
+                    return (
+                      <span
+                        key={i}
+                        className={`text-xs font-medium px-3 py-1 rounded-full ${color}`}
+                      >
+                        {tech}
+                      </span>
+                    );
+                  })}
+                </div>
+
+                {/* QuranKi Link */}
+                {project.title === "QuranKi" && (
+                  <div className="mt-3 pt-3 border-t border-slate-200 dark:border-slate-700">
+                    <motion.a
+                      href="https://quranki.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="inline-flex items-center gap-2 text-sm font-medium text-teal-600 dark:text-teal-400 hover:text-teal-700 dark:hover:text-teal-300 transition-colors"
                     >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+                      <ExternalLink className="w-4 h-4" />
+                      Visit quranki.com
+                    </motion.a>
+                  </div>
+                )}
 
-                {/* Actions */}
-                <div className="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-700">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex items-center gap-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors"
-                  >
-                    <span>View Details</span>
-                    <ChevronRight className="w-4 h-4" />
-                  </motion.button>
-                  
-
-                </div>
+                
               </div>
             </motion.div>
           ))}
