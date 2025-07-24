@@ -43,7 +43,7 @@ export default function HeroSection() {
             <motion.div variants={fadeInLeft} className="space-y-6">
               <motion.h1 className="text-4xl md:text-6xl font-bold leading-tight">
                 <TypingAnimation
-                  text="Hello &apos;I&apos;m "
+                  text="Hello, I&apos;m "
                   speed={80}
                   className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 dark:from-white dark:via-blue-300 dark:to-white bg-clip-text text-transparent"
                   onComplete={() => setShowDescription(true)}
