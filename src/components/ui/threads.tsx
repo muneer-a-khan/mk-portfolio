@@ -30,9 +30,9 @@ uniform vec2 uMouse;
 
 #define PI 3.1415926538
 
-const int u_line_count = 40;
-const float u_line_width = 7.0;
-const float u_line_blur = 10.0;
+const int u_line_count = 10; // Reduced from 20 to 10 for better performance
+const float u_line_width = 5.0; // Reduced from 7.0
+const float u_line_blur = 8.0; // Reduced from 10.0
 
 float Perlin2D(vec2 P) {
     vec2 Pi = floor(P);
@@ -64,20 +64,20 @@ float lineFn(vec2 st, float width, float perc, float offset, vec2 mouse, float t
     float split_point = 0.1 + split_offset;
 
     float amplitude_normal = smoothstep(split_point, 0.7, st.x);
-    float amplitude_strength = 0.5;
+    float amplitude_strength = 0.3; // Reduced from 0.5
     float finalAmplitude = amplitude_normal * amplitude_strength
-                           * amplitude * (1.0 + (mouse.y - 0.5) * 0.2);
+                           * amplitude * (1.0 + (mouse.y - 0.5) * 0.1); // Reduced mouse influence
 
-    float time_scaled = time / 10.0 + (mouse.x - 0.5) * 1.0;
+    float time_scaled = time / 15.0 + (mouse.x - 0.5) * 0.5; // Slower animation
     float blur = smoothstep(split_point, split_point + 0.05, st.x) * perc;
 
     float xnoise = mix(
-        Perlin2D(vec2(time_scaled, st.x + perc) * 2.5),
-        Perlin2D(vec2(time_scaled, st.x + time_scaled) * 3.5) / 1.5,
-        st.x * 0.3
+        Perlin2D(vec2(time_scaled, st.x + perc) * 1.5), // Reduced complexity
+        Perlin2D(vec2(time_scaled, st.x + time_scaled) * 2.0) / 2.0, // Reduced complexity
+        st.x * 0.2
     );
 
-    float y = 0.5 + (perc - 0.5) * distance + xnoise / 2.0 * finalAmplitude;
+    float y = 0.5 + (perc - 0.5) * distance + xnoise / 3.0 * finalAmplitude; // Reduced amplitude
 
     float line_start = smoothstep(
         y + (width / 2.0) + (u_line_blur * pixel(1.0, iResolution.xy) * blur),
@@ -117,7 +117,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
     }
 
     float colorVal = 1.0 - line_strength;
-    fragColor = vec4(uColor * colorVal, colorVal);
+    fragColor = vec4(uColor * colorVal, colorVal * 0.8); // Reduced opacity
 }
 
 void main() {
@@ -134,10 +134,21 @@ const Threads: React.FC<ThreadsProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const animationFrameId = useRef<number>(0);
+  const isVisibleRef = useRef<boolean>(false);
+  const lastRenderTime = useRef<number>(0);
 
   useEffect(() => {
     if (!containerRef.current) return;
     const container = containerRef.current;
+
+    // Intersection Observer to pause animations when not visible
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisibleRef.current = entry.isIntersecting;
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(container);
 
     const renderer = new Renderer({ alpha: true });
     const gl = renderer.gl;
@@ -182,6 +193,7 @@ const Threads: React.FC<ThreadsProps> = ({
     let targetMouse = [0.5, 0.5];
 
     function handleMouseMove(e: MouseEvent) {
+      if (!isVisibleRef.current) return; // Skip mouse updates when not visible
       const rect = container.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width;
       const y = 1.0 - (e.clientY - rect.top) / rect.height;
@@ -196,8 +208,21 @@ const Threads: React.FC<ThreadsProps> = ({
     }
 
     function update(t: number) {
+      if (!isVisibleRef.current) {
+        // Skip rendering when not visible to save performance
+        animationFrameId.current = requestAnimationFrame((t) => update(t));
+        return;
+      }
+
+      // Throttle rendering to 30fps for better performance
+      if (t - lastRenderTime.current < 33) { // ~30fps
+        animationFrameId.current = requestAnimationFrame((t) => update(t));
+        return;
+      }
+      lastRenderTime.current = t;
+
       if (enableMouseInteraction) {
-        const smoothing = 0.05;
+        const smoothing = 0.03; // Reduced smoothing for better performance
         currentMouse[0] += smoothing * (targetMouse[0] - currentMouse[0]);
         currentMouse[1] += smoothing * (targetMouse[1] - currentMouse[1]);
         program.uniforms.uMouse.value[0] = currentMouse[0];
@@ -206,7 +231,7 @@ const Threads: React.FC<ThreadsProps> = ({
         program.uniforms.uMouse.value[0] = 0.5;
         program.uniforms.uMouse.value[1] = 0.5;
       }
-      program.uniforms.iTime.value = t * 0.001;
+      program.uniforms.iTime.value = t * 0.0005; // Slower time progression
 
       renderer.render({ scene: mesh });
       animationFrameId.current = requestAnimationFrame((t) => update(t));
@@ -214,6 +239,7 @@ const Threads: React.FC<ThreadsProps> = ({
     animationFrameId.current = requestAnimationFrame((t) => update(t));
 
     return () => {
+      observer.disconnect();
       if (animationFrameId.current)
         cancelAnimationFrame(animationFrameId.current);
       window.removeEventListener("resize", resize);
